@@ -1,31 +1,31 @@
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../controller/provider/provider.dart';
 
-class slash_screen extends StatefulWidget {
-  const slash_screen({super.key});
 
+class SplashScreen extends StatefulWidget {
   @override
-  State<slash_screen> createState() => _slash_screenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _slash_screenState extends State<slash_screen> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    navigateToLogin();
+    loadData();
   }
-  Future<void> navigateToLogin() async {
-    await Future.delayed(Duration(seconds: 3));
-    Navigator.pushNamed(
-        context,"home");
+
+   loadData() async {
+     await Future.delayed(Duration(seconds: 3));
+    Provider.of<CountryProvider>(context, listen: false).fetchCountries();
+    Navigator.of(context).pushNamed('/home');
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-
-      ),
+      body: Center(child: CircularProgressIndicator()),
     );
   }
 }

@@ -1,10 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../controller/provider/provider.dart';
 
-class home_screen extends StatelessWidget {
-  const home_screen({super.key});
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<CountryProvider>(context,listen: false).fetchCountries();
+  }
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final countries = Provider.of<CountryProvider>(context).countries;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Countries'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {
+              Navigator.of(context).pushNamed('/saved');
+            },
+          ),
+        ],
+      ),
+      body: ListView.builder(
+       itemCount: countries.length,
+       itemBuilder: (context, index) {
+         return ListTile(
+           leading: Image.network(countries[index].flag),
+           title: Text(countries[index].name),
+           subtitle: Text(countries[index].capital),
+           onTap: () {
+             Navigator.of(context).pushNamed('/detail', arguments: countries[index]);
+           },
+         );
+       },
+              ),
+    );
   }
 }
