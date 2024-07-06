@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
    loadData() async {
      await Future.delayed(Duration(seconds: 3));
-    Provider.of<CountryProvider>(context, listen: false).fetchCountries();
+    Provider.of<MainModalProvider>(context, listen: false).fetchMainModal();
     Navigator.of(context).pushNamed('/home');
   }
 

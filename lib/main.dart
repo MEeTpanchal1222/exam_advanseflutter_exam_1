@@ -1,59 +1,18 @@
-//
-// import 'package:exam_advanseflutter_exam_1/view/%20SavedCountries_screen/seved_screen.dart';
-// import 'package:exam_advanseflutter_exam_1/view/Detail_screen/detail_screen.dart';
-// import 'package:exam_advanseflutter_exam_1/view/home_screen/home_screen.dart';
-// import 'package:exam_advanseflutter_exam_1/view/slash_screen/slash_sccreen.dart';
-// import 'package:flutter/material.dart';
-//
-// import 'controller/helper/hepler.dart';
-// import 'modal/modal.dart';
-//
-// void main() {
-//   runApp(MyApp());
-// }
-//
-// class MyApp extends StatefulWidget {
-//   @override
-//   State<MyApp> createState() => _MyAppState();
-// }
-//
-// class _MyAppState extends State<MyApp> {
-//   late Future<List<Country>> countries;
-//
-//   @override
-//   void initState() {
-//     countries = fetchCountries();
-//     super.initState();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//         debugShowCheckedModeBanner: false,
-//         initialRoute: "/",
-//         routes: {
-//           "/": (conetxt) => SplashScreen(),
-//           "/home": (context) => HomePage(),
-//           "/detail": (context) => DetailPage(),
-//           "/seved": (context) => SavedCountriesPage()
-//         }
-//     );
-//   }
-// }
 
-import 'package:exam_advanseflutter_exam_1/view/%20SavedCountries_screen/seved_screen.dart';
 import 'package:exam_advanseflutter_exam_1/view/Detail_screen/detail_screen.dart';
+import 'package:exam_advanseflutter_exam_1/view/Saved_screen/seved_screen.dart';
 import 'package:exam_advanseflutter_exam_1/view/home_screen/home_screen.dart';
 import 'package:exam_advanseflutter_exam_1/view/slash_screen/slash_sccreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'controller/provider/provider.dart';
+import 'modal/modal.dart';
 
 
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (context) => CountryProvider(),
+      create: (context) => MainModalProvider(),
       child: MyApp(),
     ),
   );
@@ -67,9 +26,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => SplashScreen(),
-        '/home': (context) => HomePage(),
-        '/detail': (context) => DetailPage(),
-        '/saved': (context) => SavedCountriesPage(),
+        '/home': (context) => HomeScreen(),
+        //'/detail': (context) => ProductScreen(),
+        '/saved': (context) => SavedPage(),
       },
     );
   }

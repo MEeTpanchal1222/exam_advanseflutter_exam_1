@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../controller/provider/provider.dart';
 
-class SavedCountriesPage extends StatelessWidget {
+class SavedPage
+extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final savedCountries = Provider.of<CountryProvider>(context).savedCountries;
+    final saved = Provider.of<MainModalProvider>(context).Saved;
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Saved Countries'),
       ),
       body: ListView.builder(
-        itemCount: savedCountries.length,
+        itemCount: saved.length,
         itemBuilder: (context, index) {
           return ListTile(
-            leading: Image.network(savedCountries[index].flag),
-            title: Text(savedCountries[index].name),
-            subtitle: Text(savedCountries[index].capital),
+            leading: Image.network(saved[index].recipes[index].image),
+            title: Text(saved[index].recipes[index].name),
+            subtitle: Text(saved[index].recipes[index].cuisine),
           );
         },
       ),
