@@ -29,20 +29,20 @@ class HomeScreen extends StatelessWidget {
       body:   Consumer<MainModalProvider>(
         builder:(context, provider, _) {
           if (provider.isLoading) {
-                return const Center(
+                return  Center(
                   child: CircularProgressIndicator(),
                 );
               }
           else if (provider.errorMessage.isNotEmpty) {
-            return const Center(
-              child: Text('Error loading data'),
+            return  Center(
+              child: Text(provider.errorMessage),
             );
           }
           else if (provider.mainModal == null ||
               provider.mainModal!.recipes.isEmpty) {
                 return GridView.builder(
                   itemCount: provider.mainModal?.recipes.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     mainAxisExtent: 275,
                   ),
@@ -191,7 +191,7 @@ class HomeScreen extends StatelessWidget {
                 );
               } else {
                 return const Center(
-                  child: Text('No data available'),
+                  child: Text('No data available',style: TextStyle(color: Colors.black),),
                 );
               }
         }
@@ -206,120 +206,7 @@ class HomeScreen extends StatelessWidget {
 
 
 
-// home_screen.dart
-/*
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../controller/provider/provider.dart';
-import '../../controller/provider/helper/helper.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Recipes'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.save),
-            onPressed: () {
-              // Implement save functionality if needed
-            },
-          ),
-        ],
-      ),
-      body: Consumer<MainModalProvider>(
-        builder: (context, provider, _) {
-          if (provider.isLoading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (provider.errorMessage.isNotEmpty) {
-            return Center(
-              child: Text(provider.errorMessage),
-            );
-          } else if (provider.mainModal == null ||
-              provider.mainModal!.recipes.isEmpty) {
-            return Center(
-              child: Text('No recipes available'),
-            );
-          } else {
-            return GridView.builder(
-              itemCount: provider.mainModal!.recipes.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisExtent: 275,
-              ),
-              itemBuilder: (context, index) {
-                var recipe = provider.mainModal!.recipes[index];
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      // Navigate to recipe details page if needed
-                    },
-                    child: Card(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.network(
-                                recipe.image,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              recipe.name,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0,
-                              vertical: 4.0,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  '${recipe.cookTimeMinutes} Mins',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Text(
-                                  '${recipe.rating} ⭐',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.amber,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            );
-          }
-        },
-      ),
-    );
-  }
-}
 
- */
+
